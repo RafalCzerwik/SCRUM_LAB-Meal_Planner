@@ -1,0 +1,48 @@
+{% extends "__base__.html" %}
+{% block content %}
+<div class="dashboard-content border-dashed p-3 m-4 view-height">
+
+    <div class="row border-bottom border-3 p-1 m-1">
+        <div class="col noPadding">
+            <h3 class="color-header text-uppercase">NOWY PLAN</h3>
+        </div>
+    </div>
+
+    <div class="schedules-content">
+        <form method="post" action="{% url 'add_plan' %}">
+            {% csrf_token %}
+            {% if error_message %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error_message }}
+                </div>
+            {% endif %}
+            <div class="form-group row">
+                <label for="planName" class="col-sm-2 label-size col-form-label">
+                    Nazwa planu
+                </label>
+                <div class="col-sm-10">
+                    <input type="text" name="name" class="form-control" id="planName" placeholder="Nazwa planu">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="planDescription" class="col-sm-2 label-size col-form-label">
+                    Opis planu
+                </label>
+                <div class="col-sm-10">
+                    <textarea name="description" class="form-control" rows="5" id="planDescription" placeholder="Opis planu"></textarea>
+                </div>
+            </div>
+            <div class="col d-flex justify-content-end mb-2 noPadding">
+                <button type="submit" class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Zapisz</button>
+            </div>    
+        </form>
+    </div>
+</div>
+{% endblock content %}
+
+{% block title %}{% endblock %}
+
+<!--<div class="col d-flex justify-content-end mb-2 noPadding">
+                <button type="submit" class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Zapisz</button>
+            </form>
+        </div> -->
