@@ -87,6 +87,9 @@ class RegisterView(View):
     def get(self, request):
         return render(request, 'registration.html')
 
+    def post(self, request):
+        pass
+
 
 class RecipeListView(View):
     """
