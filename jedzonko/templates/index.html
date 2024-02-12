@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Meal Planner</title>
+    <title>{% block title %}{% endblock %}Meal Planner</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Charmonman:400,700|Open+Sans:400,600,700&amp;subset=latin-ext"
@@ -31,7 +31,7 @@
                     <a class="nav-link" href="#contact">About app</a>
                 </li>
                 <li class="nav-item ml-4">
-                    <a class="nav-link disabled" href="/recipe/list/">Recipes</a>
+                    <a class="nav-link disabled" href="#">Recipes</a>
                 </li>
                 <li class="nav-item ml-4">
                     <a class="nav-link disabled" href="#contact">Contact</a>
@@ -39,6 +39,9 @@
             </ul>
         </nav>
     </header>
+    <!-- //--------------------------- page content -------------------------// -->
+        {% block content %}{% endblock content %}
+    <!-- //--------------------------- page content end ---------------------// -->
     {% if index  %}
     <section class="padding-large bg-light">
         <div id="carouselExampleControls" class="carousel slide main-slider" data-ride="carousel">

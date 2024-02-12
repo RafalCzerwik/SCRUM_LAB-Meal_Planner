@@ -1,9 +1,20 @@
-{%  extends "index.html" %}
+{% extends "index.html" %}
 
-{% block title %}Sign In{% endblock %}
+{% block title %}Sign In | {% endblock %}
 
 {% block content %}
-
-    <p>Under construction</p>
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 63vh;">
+    <form action="{% url 'login' %}" method="post" class="form-signin">
+        {% csrf_token %}
+        <h1 class="h3 mb-3 font-weight-normal text-center">Sign In</h1>
+        <label for="login" class="sr-only">Login</label>
+        <input type="text" id="login" name="username" class="form-control mb-3" placeholder="Login" required autofocus>
+        
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" id="password" name="password" class="form-control mb-3" placeholder="Password" required>
+        
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+</div>    
 
 {% endblock content %}

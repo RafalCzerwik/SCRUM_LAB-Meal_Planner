@@ -1,9 +1,10 @@
 from datetime import datetime
 
+from django.contrib.auth import authenticate, login
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 import random
 
 from jedzonko.models import Plan, Recipe, RecipePlan, DayName, Page
@@ -67,6 +68,19 @@ class DashboardView(View):
 class LogInView(View):
     def get(self, request):
         return render(request, 'login.html')
+
+    def post(self, request):
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        if username and password:
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return HttpResponseRedirect('/main/')
+        else:
+            return render(request, 'login.html',
+                          {'error_message': 'Incorrect username por password. Please try again.'})
 
 
 class RegisterView(View):
