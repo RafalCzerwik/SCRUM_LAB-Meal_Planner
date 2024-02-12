@@ -16,13 +16,27 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from jedzonko.views import IndexView, DashboardView, RecipeModifyView, AddRecipeView, RecipeListView, RecipeDetailsView, \
-    AddRecipeToPlanView, AddPlanView, PlanListView, PlanDetailsView
+from jedzonko.views import (
+    IndexView,
+    DashboardView,
+    RecipeModifyView,
+    AddRecipeView,
+    RecipeListView,
+    RecipeDetailsView,
+    AddRecipeToPlanView,
+    AddPlanView,
+    PlanListView,
+    PlanDetailsView,
+    LogInView,
+    RegisterView,
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', IndexView.as_view(), name='index'),
     path('main/', DashboardView.as_view(), name='dashboard'),
+    path('login/', LogInView.as_view(), name='login'),
+    path('register/', RegisterView.as_view(), name='register'),
     path('recipe/<int:id>/', RecipeDetailsView.as_view(), name='recipe_details'),
     path('recipe/list/', RecipeListView.as_view(), name='recipe_list'),
     path('recipe/add/', AddRecipeView.as_view(), name='add_recipe'),
@@ -31,6 +45,4 @@ urlpatterns = [
     path('plan/add-recipe/', AddRecipeToPlanView.as_view(), name='add_recipe_to_plan'),
     path('plan/list/', PlanListView.as_view(), name='plan_list'),
     path('plan/<int:id>/', PlanDetailsView.as_view(), name='plan_details'),
-    # path('contact/', contactpage, name='contact_page'),
-    # path('about/', aboutapppage, name='about_page'),
 ]

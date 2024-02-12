@@ -33,38 +33,6 @@ class IndexView(View):
 
         return render(request, "index.html", ctx)
 
-    def contactpage(self, request):
-        """
-        View for rendering the contact page.
-
-        Methods:
-        - contactpage(request): Handles requests for rendering the contact page.
-        """
-        try:
-            contact_page = Page.objects.get(slug='contact')
-            context = {'extra_page': contact_page, 'no_index': True}
-            return render(request, 'index.html', context)
-        except Page.DoesNotExist:
-            return render(request, 'index.html', {'scroll_to_contact': True, 'index': True})
-        except Exception as e:
-            raise Http404('Page not found') from e
-
-    def aboutapppage(self, request):
-        """
-        View for rendering the about us page.
-
-        Methods:
-        - aboutapppage(request): Handles requests for rendering the about us page.
-        """
-        try:
-            about_page = Page.objects.get(slug='about')
-            context = {'extra_page': about_page, 'no_index': True}
-            return render(request, 'index.html', context)
-        except Page.DoesNotExist:
-            return render(request, 'index.html', {'scroll_to_about': True, 'index': True})
-        except Exception as e:
-            raise Http404('Page not found') from e
-
 
 class DashboardView(View):
     """
@@ -94,6 +62,16 @@ class DashboardView(View):
         }
 
         return render(request, "dashboard.html", context)
+
+
+class LogInView(View):
+    def get(self, request):
+        return render(request, 'login.html')
+
+
+class RegisterView(View):
+    def get(self, request):
+        return render(request, 'registration.html')
 
 
 class RecipeListView(View):
@@ -361,37 +339,3 @@ class PlanDetailsView(View):
         context = {"plan": plan, "days": days, "meals": meals, "show_special_menu_item": show_special_menu_item}
 
         return render(request, 'app-details-schedules.html', context)
-
-
-# def contactpage(request):
-#     """
-#     View for rendering the contact page.
-#
-#     Methods:
-#     - contactpage(request): Handles requests for rendering the contact page.
-#     """
-#     try:
-#         contact_page = Page.objects.get(slug='contact')
-#         context = {'extra_page': contact_page, 'no_index': True}
-#         return render(request, 'index.html', context)
-#     except Page.DoesNotExist:
-#         return render(request, 'index.html', {'scroll_to_contact': True, 'index': True})
-#     except Exception as e:
-#         raise Http404('Page not found') from e
-#
-#
-# def aboutapppage(request):
-#     """
-#     View for rendering the about us page.
-#
-#     Methods:
-#     - aboutapppage(request): Handles requests for rendering the about us page.
-#     """
-#     try:
-#         about_page = Page.objects.get(slug='about')
-#         context = {'extra_page': about_page, 'no_index': True}
-#         return render(request, 'index.html', context)
-#     except Page.DoesNotExist:
-#         return render(request, 'index.html', {'scroll_to_about': True, 'index': True})
-#     except Exception as e:
-#         raise Http404('Page not found') from e
