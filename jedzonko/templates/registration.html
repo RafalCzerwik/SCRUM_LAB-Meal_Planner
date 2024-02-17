@@ -1,13 +1,13 @@
 {% extends "index.html" %}
 
-{% block title %}Sign In | {% endblock %}
+{% block title %}Register | {% endblock %}
 
 {% block content %}
     
 <div class="container d-flex justify-content-center align-items-center" style="min-height: 63vh;">
     <form action="{% url 'register' %}" method="post" class="form-signin">
         {% csrf_token %}
-        <h1 class="h3 mb-3 font-weight-normal text-center">Register</h1>
+        <h1 class="h3 mb-3 font-weight-normal text-center">Register account</h1>
         <fieldset class="form-group mb-3">
             <legend class="sr-only">Gender</legend>
             <div class="form-check form-check-inline">
